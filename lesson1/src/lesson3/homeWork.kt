@@ -3,7 +3,7 @@ package lesson3
 import java.util.*
 
 fun main(args: Array<String>){
-   checkNull()
+    checkNull()
     createArray()
     sortArray()
 }
