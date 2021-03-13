@@ -4,7 +4,7 @@ import java.util.*
 
 fun main(args: Array<String>){
    checkNull()
-    //createArray()
+    createArray()
     sortArray()
 }
 
@@ -22,11 +22,13 @@ fun checkNull() { //Проверка на значние строки и под�
 
 fun createArray(){
     val reader = Scanner(System.`in`)
-    println("Какой длины массив создать")
-    val arr = reader.nextInt()
+    println("Какой длины массив создать. Введите начальное значение")
+    val first = reader.nextInt()
+    println("Введите конечное значение")
+    val end = reader.nextInt()
     val createArr = mutableListOf<Int>()
 
-    for (i in 0..arr)
+    for (i in first..end)
         createArr.add(i)
 
     println(createArr)
