@@ -49,5 +49,10 @@ fun main(args: Array<String>) {
     itemArr.removeAt(2)
     itemArr.add(-2)
 
+    itemArr.forEach {i ->
+        print(i)
+
+    }
+
     println(itemArr)
 }
