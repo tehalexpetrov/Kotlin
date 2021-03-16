@@ -1,5 +1,7 @@
 package lesson4
 
+import java.lang.IllegalArgumentException
+
 fun main(args: Array<String>){
     for (a in 1..10){
         println(a)
@@ -39,5 +41,52 @@ println("\nВыводим таблицу умножения\n")
 
     for (num in 9 downTo 3 step 3){
         println("$num ${arrNum[num]}")
+    }
+
+    //Функциональное программирование
+    students("Александ", "Петров", 5)
+    students("Василий", "Иванов")
+
+    println("Cумма полученных чисел равна: ${sum(1 , 2 , 3 , 4)}")
+
+    println("Аргументы переменной длины равны: ${arg(1, 3, 100, 899)}")
+
+    message("Hello", "World")
+
+    //Исключения
+    var number = 45
+    if (number !in 0..10){
+        throw IllegalArgumentException(
+            "Число $number не входит в диапазон от 0 до 10"
+        )
+    }
+    println(number)
+
+}
+
+fun students(firstName: String, lastName: String, mark: Int=0 ){
+    println("Имя: $firstName")
+    println("Фамилия: $lastName")
+    println("Оценка: $mark")
+}
+
+/*4 числа, которые нужно сложить между собой. Напишите функцию, которая будет вычислят сумму этих чисел,
+два последних числа как значение по умолчанию*/
+fun sum(a: Int, b: Int, c: Int = 0, d: Int = 0): Int {
+    return a + b + c + d
+}
+
+//Аргументы переменной длины
+fun arg(vararg grade: Int):Int{
+    var result = 0
+    for (num in grade){
+        result += num
+    }
+    return result
+}
+
+fun message(vararg str:String){
+    for (m in str){
+      println(m)
     }
 }
