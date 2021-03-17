@@ -3,6 +3,7 @@ package lesson4
 import java.lang.IllegalArgumentException
 
 fun main(args: Array<String>){
+
     for (a in 1..10){
         println(a)
     }
