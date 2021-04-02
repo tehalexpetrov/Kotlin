@@ -8,4 +8,11 @@ fun main(args:Array<String>){
     //Второй вариант
     val sm: (Int, Int) -> Int = {a, b -> a + b}
     println(sm(8, 8))
+
+    val some = {println("Exame")}
+    some()
+    some()
+
+    val progriming = { println("Kotlin")}
+    val description = progriming()
 }
