@@ -41,5 +41,25 @@ class Wolf: Canine(){
     override fun eat(){
         println("The Wolf is eating $food")
     }
+}
+
+class Vet {
+    fun giveShot(animals: Animals){
+        animals.makeNoise()
+    }
+}
+
+fun main(){
+    val animalss = arrayOf(Hippo(), Wolf())
+    for (item in animalss){
+        item.roam()
+        item.eat()
+    }
+
+    val vet = Vet()
+    val wolf = Wolf()
+    val hippo = Hippo()
+    vet.giveShot(wolf)
+    vet.giveShot(hippo)
 
 }
