@@ -1,20 +1,16 @@
 package lesson5_Animals
 
-open class Animals {
-    open val image = ""
-    open val food = ""
-    open val habitat = ""
+abstract class Animals : Roamable {
+    abstract val image: String
+    abstract val food: String
+    abstract val habitat: String
     var hunger = 10
 
-    open fun makeNoise(){
-        println("Животное будет шуметь")
-    }
+    abstract fun makeNoise()
 
-    open fun eat(){
-        println("Животное ест")
-    }
+    abstract fun eat()
 
-    open fun roam(){
+    override fun roam(){
         println("Животное передвигается")
     }
 
@@ -23,7 +19,21 @@ open class Animals {
     }
 }
 
-open class Canine: Animals(){
+class Hippo: Animals(){
+    override val image = "hippo.img"
+    override val food = "grass"
+    override val habitat = "water"
+
+    override fun makeNoise() {
+        println("Grunt! Grunt!")
+    }
+
+    override fun eat(){
+        println("The Hippo is eating $food")
+    }
+}
+
+abstract class Canine: Animals(){
     override fun roam() {
         println("The Canine is roaming")
     }
@@ -56,10 +66,14 @@ fun main(){
         item.eat()
     }
 
+
     val vet = Vet()
     val wolf = Wolf()
     val hippo = Hippo()
+    val vechicl = Vechicle()
     vet.giveShot(wolf)
     vet.giveShot(hippo)
+
+    vechicl.roam()
 
 }
