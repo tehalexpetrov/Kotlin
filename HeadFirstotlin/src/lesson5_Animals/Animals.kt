@@ -60,20 +60,20 @@ class Vet {
 }
 
 fun main(){
-    val animalss = arrayOf(Hippo(), Wolf())
-    for (item in animalss){
+    val roamables = arrayOf(Hippo(), Wolf(), Vechicle())
+    for (item in roamables){
         item.roam()
-        item.eat()
+            if(item is Animals){
+                item.eat()
+            }
     }
 
 
     val vet = Vet()
     val wolf = Wolf()
     val hippo = Hippo()
-    val vechicl = Vechicle()
     vet.giveShot(wolf)
     vet.giveShot(hippo)
 
-    vechicl.roam()
 
 }
