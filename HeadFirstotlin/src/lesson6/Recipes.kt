@@ -19,7 +19,7 @@ isVegetarian: Boolean = false,
 difficulty: String = "") : Array<Recipes>{
     return arrayOf(Recipes(title, ingredient, isVegetarian, difficulty))
 }
-
+//Перегружаемые функции
 fun addNumbers(a: Int, b: Int) : Int {
     return a + b
 }
@@ -27,6 +27,7 @@ fun addNumbers(a: Int, b: Int) : Int {
 fun addNumbers(a: Double, b: Double) : Double {
     return a + b
 }
+//----------------------------------------
 
 fun main(args: Array<String>) {
     val r1 = Recipes("Tai Country", "Chicken")
