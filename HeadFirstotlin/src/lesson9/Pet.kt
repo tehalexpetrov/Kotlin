@@ -5,13 +5,20 @@ class Cat(name: String) : Pet(name)
 class Dog(name: String) : Pet(name)
 class Fish(name: String) : Pet(name)
 
-class Contest<T : Pet>(var vet: Vet<T>) {
+//Класс Vet
+class Vet<T: Pet>{
+    fun treat(t: T){
+        println("Treat Pet ${t.name}")
+    }
+}
+
+class Contest<T : Pet>(var vet: Vet<in T>) {
+
     val scores: MutableMap<T, Int> = mutableMapOf()
 
     fun addScore(t: T, score: Int = 0) {
         if (score >= 0) scores.put(t, score)
     }
-
     fun getWinners(): MutableSet<T> {
         val winners: MutableSet<T> = mutableSetOf()
         val highScore = scores.values.maxOrNull()
@@ -19,12 +26,6 @@ class Contest<T : Pet>(var vet: Vet<T>) {
             if (score == highScore) winners.add(t)
         }
         return winners
-    }
-}
-
-class Vet<T: Pet>{
-    fun treat(t: T){
-        println("Treat Pet ${t.name}")
     }
 }
 
@@ -59,22 +60,33 @@ fun main(args: Array<String>) {
     val fishFinny = Fish("Finny")
     val fishMarry = Fish("Marry")
 
-    val catContest = Contest<Cat>()
+    val catVet = Vet<Cat>()
+    val fishVet = Vet<Fish>()
+    val petVet = Vet<Pet>()
+
+    catVet.treat(catFuzz)
+    petVet.treat(catKatsu)
+    petVet.treat(fishFinny)
+
+    val catContest = Contest<Cat>(catVet)
     catContest.addScore(catFuzz, 50)
     catContest.addScore(catKatsu, 45)
     val topCat = catContest.getWinners().first()
     println("Cat is ${topCat.name}")
 
-    val petContest = Contest<Pet>()
+    val petContest = Contest<Pet>(petVet)
     petContest.addScore(catFuzz, 50)
     petContest.addScore(fishFinny, 56)
     petContest.addScore(fishMarry, 66)
     val topPet = petContest.getWinners().first()
     println("Cat is ${topPet.name}")
 
+    val fishContest = Contest<Fish>(petVet)
+
     val dogRetailer: Retailer<Dog> = DogRetailer()
     val catRetailer: Retailer<Cat> = CatRetailer()
     val petRetailer: Retailer<Pet> = CatRetailer()
     petRetailer.sell()
+
 
 }
